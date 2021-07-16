@@ -1,0 +1,5 @@
+package com.hussain.location.controllers;
+
+public class LocationController {
+
+}

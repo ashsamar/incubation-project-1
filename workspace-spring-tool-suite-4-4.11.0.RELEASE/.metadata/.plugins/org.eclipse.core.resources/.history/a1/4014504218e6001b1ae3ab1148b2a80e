@@ -1,0 +1,7 @@
+package com.hussain.location.repos;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface LocationRepository extends JpaRepository<T, ID> {
+
+}

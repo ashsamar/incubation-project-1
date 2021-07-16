@@ -1,0 +1,5 @@
+package com.hussain.location.entities;
+
+public class Location {
+
+}

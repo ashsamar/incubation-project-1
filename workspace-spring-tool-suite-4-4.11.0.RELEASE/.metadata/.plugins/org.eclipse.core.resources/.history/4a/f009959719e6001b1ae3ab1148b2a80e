@@ -1,0 +1,5 @@
+package com.hussain.location.service;
+
+public interface LocationService {
+
+}

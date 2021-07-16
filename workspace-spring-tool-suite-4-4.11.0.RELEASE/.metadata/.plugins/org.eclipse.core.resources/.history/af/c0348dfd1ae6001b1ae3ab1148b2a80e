@@ -1,0 +1,48 @@
+package com.hussain.location.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.hussain.location.entities.Location;
+
+@Service
+public class LocationServiceImpl implements LocationService {
+
+	@Autowired
+	private LocationService service;
+	
+	@Override
+	public Location saveLocation(Location location) {
+		
+		return service.saveLocation(location);
+	}
+
+	@Override
+	public Location updateLocation(Location location) {
+		// TODO Auto-generated method stub
+		return service.saveLocation(location);
+	}
+
+	@Override
+	public void deleteLocation(Location location) {
+		
+		service.deleteLocation(location);
+	}
+
+	@Override
+	public Location getLocationById(int id) {
+	
+		Location location = new Location();
+		location = service.getLocationById(id);
+		return location;
+	}
+
+	@Override
+	public List<Location> getAllLocations() {
+		List<Location> allLocations = service.getAllLocations();
+		return allLocations;
+	}
+
+}
