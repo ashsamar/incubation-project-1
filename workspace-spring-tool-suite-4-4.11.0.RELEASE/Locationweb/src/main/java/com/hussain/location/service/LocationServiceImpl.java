@@ -22,7 +22,7 @@ public class LocationServiceImpl implements LocationService {
 
 	@Override
 	public Location updateLocation(Location location) {
-		// TODO Auto-generated method stub
+		
 		return repos.save(location);
 	}
 

@@ -4,27 +4,51 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Cargo Details</title>
 </head>
-<body>
+<body style = "background-color:lightblue">
+
+<style type = "css/text">
+input
+{
+
+padding 10px;
+}
+.btn
+{
+background-color : lightgray;
+width : 50%;
+height : 200;
+}
+</style>
+
+
+
+<h2 align = "center">Cargo Details:</h2>
+
+<table width = 50% height = 50% border = "5" align = "center">
+
 
 <form action="saveLocation" method="POST">
 
-Id:<input type="text" name= "id"/><br><br>
+<tr><td width = 50% height = 50>Id:</td><td height = 50><input type="text" name= "id"></td></tr>
 
-Code:<input type="text" name = "code"/><br><br>
 
-Name:<input type="text" name = "name"/><br><br>
+<tr><td height = 50>Code:</td><td height = 50><input type="text" name = "code"/></td></tr><br><br>
 
-Type:
+<tr><td height = 50>Name:</td><td height = 50><input type="text" name = "name"/></td></tr><br><br>
 
-URBAN: <input type="radio" name ="type" value = "URBAN"/><br><br>
-RURAL: <input type="radio" name = "type" value = "RURAL"/><br><br>
+<tr><td>Type:</td></tr>
 
-<input type="submit" value = "save"/><br><br>
+<tr><td height = 50>URBAN: </td><td height = 50><input type="radio" name ="type" value = "URBAN"/></td></tr><br><br>
+<tr><td height = 50>RURAL: </td><td height = 50><input type="radio" name = "type" value = "RURAL"/></td></tr><br><br>
 
+<tr><td height = 50><input class = "btn" type="submit" value = "save"/></td></tr><br><br>
+
+
+<tr><td><a href ="displayLocations">View All </a></td></tr>
 </form>>
-
+</table>
 ${msg}
 
 </body>
