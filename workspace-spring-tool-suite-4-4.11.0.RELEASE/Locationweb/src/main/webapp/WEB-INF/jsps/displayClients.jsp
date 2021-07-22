@@ -20,21 +20,24 @@ input
 
 </style>
 
-<h2 align = "center">Details:</h2>
+<h2 align = "center">Available Cients:</h2>
 <table width = 50% height = 400 border = "5" align = "center">
 <tr>
 <th>ID</th>
 
-<th>NAME</th>
+<th>NAME OF CLIENTS</th>
 
 </tr>
 
 
-<c:forEach items="${allLocations}"  var ="location">
+<c:forEach items="${allClients}"  var ="client">
 <tr>
-//<td style="text-align:center">${location.id}</td>
+<td style="text-align:center">${client.id}</td>
 
-<td style="text-align:center">${location.name}</td>
+<td style="text-align:center">${client.name}</td>
+
+<td style="text-align:center"> <a href="displayEvents?id=${client.id}">
+         <img alt="click here" src="/Downloads/enterkeyimage.png" width=50" height="70"></a></td>
 
 
 </tr>
@@ -44,7 +47,7 @@ input
 
 </table>
 
-<a href ="showCreate">Create Client </a>
+<a href ="showCreateClient">Create Client </a>
 <a href ="generateReport">Generate Report </a>
 
 </body>

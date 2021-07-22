@@ -48,7 +48,7 @@ public class ClientController {
 		
 		Client savedClient = service.saveClient(client);
 		
-		String msg = "succesfully saved with id" +savedClient.getId();
+		String msg = "succesfully saved with id: " +savedClient.getId();
 		
 		modelmap.addAttribute("msg", msg);
 		
