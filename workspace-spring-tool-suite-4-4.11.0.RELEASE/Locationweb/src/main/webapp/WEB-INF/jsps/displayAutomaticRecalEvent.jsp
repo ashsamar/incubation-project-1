@@ -1,15 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-    <%@taglib uri="http://java.sun.com/jsp/jstl/core"  prefix ="c"%>
- 
-
- 
+     <%@taglib uri="http://java.sun.com/jsp/jstl/core"  prefix ="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title> Cargo Events:</title>
+<title>Insert title here</title>
 </head>
 <body style = "background-color:lightblue">
 
@@ -22,7 +19,7 @@ input
 
 </style>
 
-<h2 align = "center">Available Cargo Events:</h2>
+<h2 align = "center">Automatic Recal. Det. Events:</h2>
 
 
 
@@ -34,28 +31,16 @@ Filter:<input type="text" name = "keyword" required/>
 
 <th>CLIENT ID</th>
 
-<th>EACH CARGO EVENT ID</th>
 
-<th>CARGO EVENT TYPE</th>
+<th>AUTOMATIC CAL. EVENT TYPE</th>
+
 <th>RECEIVED DATE</th>
+
 <th>TIMESTAMP</th>
 
-<th>CONFIDENCE</th>
+<th>ANGLE DIFF.</th>
 
-<th>X</th>
-
-<th>Y</th>
-
-<th>Z</th>
-
-<th>WIDTH</th>
-<th>DEPTH</th>
-<th>HEIGHT</th>
-
-
-<th>SC_WIDTH</th>
-<th>SC_DEPTH</th>
-<th>SC_HEIGHT</th>
+<th>STATUS</th>
 
 <th>IMAGES</th>
 
@@ -69,37 +54,20 @@ Filter:<input type="text" name = "keyword" required/>
 
 <td style="text-align:center">${clientId}</td>
 
-<td style="text-align:center">${object.eachcargoeventid}</td>
 
-<td style="text-align:center">${object.cargoeventtype}</td>
+<td style="text-align:center">${object.automaticrecaleventtype}</td>
 
 <td style="text-align:center">${object.receiveddate}</td>
 
 <td style="text-align:center">${object.timestamp}</td>
 
-<td style="text-align:center">${object.confidence}</td>
+<td style="text-align:center">${object.anglediff}</td>
+
+<td style="text-align:center">${object.status}</td>
 
 
 
-<td style="text-align:center">${object.x}</td>
 
-<td style="text-align:center">${object.y}</td>
-
-<td style="text-align:center">${object.z}</td>
-
-
-<td style="text-align:center">${object.width}</td>
-
-<td style="text-align:center">${object.depth}</td>
-
-<td style="text-align:center">${object.height}</td>
-
-
-<td style="text-align:center">${object.sc_width}</td>
-
-<td style="text-align:center">${object.sc_depth}</td>
-
-<td style="text-align:center">${object.sc_height}</td>
 
 <td style="text-align:center"><img src="${object.image}" width=10" height="10"></td>
 

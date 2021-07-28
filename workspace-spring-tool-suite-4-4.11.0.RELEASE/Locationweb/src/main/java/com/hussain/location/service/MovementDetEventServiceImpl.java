@@ -44,4 +44,12 @@ public class MovementDetEventServiceImpl implements MovementDetEventService {
 		return allObjects;
 	}
 
+	@Override
+	public byte[] getCargoDetecEventImageById(Long id) {
+		CargoDetEvent object = new CargoDetEvent();
+        return	repos.getById(id).getImage();
+
+	
+	}
+	
 }

@@ -1,10 +1,16 @@
 package com.hussain.location.controllers;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -86,6 +92,62 @@ public class MovementDetEventController {
 		return "displayMovementDetEvent";
 	}
 
+	
+	
+	@RequestMapping("/displayMovementDetEventImage")
+	public String displayCargoDetecEventImage(@RequestParam("id")Long id,ModelMap modelmap,
+			HttpServletRequest request,HttpServletResponse response)
+	{
+		
+		
+	//	List<Objects>	allObjects = repository.findObjects(id);
+		modelmap.addAttribute("clientId", id);
+		System.out.println("till here");
+	List<MovementDetEvent>	allObjects = service.getAllCargoDetecEvents();
+	modelmap.addAttribute("allObjects",allObjects);
+	
+	byte[] image = service.getCargoDetecEventImageById(id);
+	response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
+	
+	try {
+		response.getOutputStream().write(image);
+		response.getOutputStream().flush();
+		response.getOutputStream().close();
+	} catch (IOException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+	
+		return "displayMovementDetEvent";
+	}
+
+	
+	
+
+	@RequestMapping("/displayMovementDetEventPointCloud")
+	public ResponseEntity<ByteArrayResource> displayCargoDetecEventPointCloud(@RequestParam("id")Long id)
+	{
+		
+		
+		MovementDetEvent doc  = service.getCargoDetecEventById(id);
+	
+	return ResponseEntity.ok()
+		//	.contentType(MediaType.parseMediaType("/doc.getCargoeventtype()"))
+			.header(HttpHeaders.CONTENT_DISPOSITION,"attachment:filename=\""+doc.getMovementeventtype()+"\"")
+			.body(new ByteArrayResource(doc.getPointcloud()));
+	
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	@RequestMapping("/deleteMovementDetEvent")
 	public String deleteObject(@RequestParam("id")Long id,ModelMap modelmap)

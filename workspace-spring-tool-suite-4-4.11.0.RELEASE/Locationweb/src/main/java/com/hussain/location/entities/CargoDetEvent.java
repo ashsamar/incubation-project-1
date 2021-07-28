@@ -1,18 +1,24 @@
 package com.hussain.location.entities;
 
+import java.sql.Blob;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.Arrays;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "cargodetevent")
-public class CargoDetEvent {
+public class CargoDetEvent extends AbstractEntity{
 
 	
 	@Id
@@ -35,23 +41,31 @@ public class CargoDetEvent {
 
 	private float confidence;
 	
-	//Position 
-	private float x;
-	private float y;
-	private float z;
+//	private Position pos;
+//	private float x;
+//	private float y;
+//	private float z;
 	
-	//Size?
-	private float width;
-	private float depth;
-	private float height;
-	
-	//size_conf:
+//	private Size size;
+//	private float width;
+//	private float depth;
+ //   private float height;
+//	
+//	//size_conf:
 	private float sc_width;
 	private float sc_depth;
 	private float sc_height;
 	
+	@Lob
+	@Basic(fetch = FetchType.LAZY)
+	private byte[] image;
+//	private File depthdata;
 	
 	
+	@Lob
+	@Basic(fetch = FetchType.LAZY)
+	private byte[] pointcloud;
+
 	
 	public Long getId() {
 		return id;
@@ -95,42 +109,6 @@ public class CargoDetEvent {
 	public void setConfidence(float confidence) {
 		this.confidence = confidence;
 	}
-	public float getX() {
-		return x;
-	}
-	public void setX(float x) {
-		this.x = x;
-	}
-	public float getY() {
-		return y;
-	}
-	public void setY(float y) {
-		this.y = y;
-	}
-	public float getZ() {
-		return z;
-	}
-	public void setZ(float z) {
-		this.z = z;
-	}
-	public float getWidth() {
-		return width;
-	}
-	public void setWidth(float width) {
-		this.width = width;
-	}
-	public float getDepth() {
-		return depth;
-	}
-	public void setDepth(float depth) {
-		this.depth = depth;
-	}
-	public float getHeight() {
-		return height;
-	}
-	public void setHeight(float height) {
-		this.height = height;
-	}
 	public float getSc_width() {
 		return sc_width;
 	}
@@ -149,14 +127,29 @@ public class CargoDetEvent {
 	public void setSc_height(float sc_height) {
 		this.sc_height = sc_height;
 	}
+	
+	public byte[] getImage() {
+		return image;
+	}
+	public void setImg(byte[] image) {
+		this.image = image;
+	}
+	
+	public byte[] getPointcloud() {
+		return pointcloud;
+	}
+	public void setPointcloud(byte[] pointcloud) {
+		this.pointcloud = pointcloud;
+	}
 	@Override
 	public String toString() {
 		return "CargoDetEvent [id=" + id + ", clientid=" + clientid + ", eachcargoeventid=" + eachcargoeventid
 				+ ", cargoeventtype=" + cargoeventtype + ", receiveddate=" + receiveddate + ", timestamp=" + timestamp
-				+ ", confidence=" + confidence + ", x=" + x + ", y=" + y + ", z=" + z + ", width=" + width + ", depth="
-				+ depth + ", height=" + height + ", sc_width=" + sc_width + ", sc_depth=" + sc_depth + ", sc_height="
-				+ sc_height + "]";
+				+ ", confidence=" + confidence + ", sc_width=" + sc_width + ", sc_depth=" + sc_depth + ", sc_height="
+				+ sc_height + ", image=" + Arrays.toString(image) + ", pointcloud=" + Arrays.toString(pointcloud) + "]";
 	}
+	
+	
 	
 	
 	

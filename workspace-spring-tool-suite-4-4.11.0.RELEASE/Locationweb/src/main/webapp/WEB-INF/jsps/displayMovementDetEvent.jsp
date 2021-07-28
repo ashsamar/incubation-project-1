@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    
+        <%@taglib uri="http://java.sun.com/jsp/jstl/core"  prefix ="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Movement Events:</title>
 </head>
 <body style = "background-color:lightblue">
 
@@ -42,6 +45,7 @@ input
 <th>DEPTH</th>
 <th>HEIGHT</th>
 
+<th>IMAGE</th>
 
 
 </tr>
@@ -54,9 +58,9 @@ input
 
 <td style="text-align:center">${clientId}</td>
 
-<td style="text-align:center">${object.eachcargoeventid}</td>
+<td style="text-align:center">${object.eachmovementeventid}</td>
 
-<td style="text-align:center">${object.cargoeventtype}</td>
+<td style="text-align:center">${object.movementeventtype}</td>
 
 <td style="text-align:center">${object.receiveddate}</td>
 
@@ -80,7 +84,7 @@ input
 <td style="text-align:center">${object.height}</td>
 
 
-
+<td style="text-align:center">${object.image}</td>
 
 
 <td style="text-align:center"> <a href="displayObjects">

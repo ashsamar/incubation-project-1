@@ -47,5 +47,13 @@ public class CargoDetecEventServiceImpl implements CargoDetecEventService {
 		return allObjects;
 	}
 
+	@Override
+	public byte[] getCargoDetecEventImageById(Long id) {
+		CargoDetEvent object = new CargoDetEvent();
+        return	repos.getById(id).getImage();
+
+	
+	}
+
 
 }

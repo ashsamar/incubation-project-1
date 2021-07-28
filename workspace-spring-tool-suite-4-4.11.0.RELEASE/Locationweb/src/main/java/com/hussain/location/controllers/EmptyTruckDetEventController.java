@@ -1,86 +1,61 @@
 package com.hussain.location.controllers;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.sql.Blob;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
-import javax.imageio.ImageIO;
-import javax.print.Doc;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.jsf.FacesContextUtils;
 
 import com.hussain.location.entities.CargoDetEvent;
-
-
-import com.hussain.location.repos.CargoDetecEventRepository;
-
-import com.hussain.location.service.CargoDetecEventService;
-import com.hussain.location.util.ReportUtil;
+import com.hussain.location.entities.EmptyTruckDetEvent;
+import com.hussain.location.repos.EmptyTruckDetEventRepository;
+import com.hussain.location.service.EmptyTruckDetEventService;
 
 @Controller
-public class CargoDetecEventController {
-	
-	@Autowired
-	private CargoDetecEventService service;
-	
-	@Autowired
-	private CargoDetecEventRepository repository;
-	
-	@Autowired
-	private ReportUtil reportUtil;
-	
-	@Autowired
-	private ServletContext servletContext;
-	
-	
-	
-	
+public class EmptyTruckDetEventController {
 
-	@RequestMapping("/showCreateCargoDetecEvent")
+	@Autowired
+	private EmptyTruckDetEventRepository repository;
+	
+	@Autowired
+	private EmptyTruckDetEventService service;
+	
+	
+	
+	
+	
+	@RequestMapping("/showCreateEmptyTruckDetEvent")
 	public String showCreate()
 	{
-		return "CreateCargoDetecEvent";
+		return "CreateCEmptyTruckDetEvent";
 	}
 	
-	@RequestMapping("/saveCargoDetecEvent")
-	public String saveCargoDetecEvent(@ModelAttribute("cargoDetecEvent")CargoDetEvent object,ModelMap modelmap)
+	@RequestMapping("/saveEmptyTruckDetEvent")
+	public String saveCargoDetecEvent(@ModelAttribute("emptyTruckDetEvent")EmptyTruckDetEvent object,ModelMap modelmap)
 	{
 		
-		CargoDetEvent savedObject = service.saveCargoDetecEvent(object);
+		EmptyTruckDetEvent savedObject = service.saveCargoDetecEvent(object);
 		
 	//	String msg = "succesfully saved with id: " +savedObject.getId();
 		
 	//	modelmap.addAttribute("msg", msg);
 		
-		return "CreateCargoDetecEvent";
+		return "CreateEmptyTruckDetEvent";
 	}
 	
-	@RequestMapping("/displayCargoDetecEvent")
+	@RequestMapping("/displayEmptyTruckDetEvent")
 	public String displayCargoDetecEvent(@RequestParam("id")Long id,ModelMap modelmap, HttpServletResponse response) throws 
 	ServletException,SQLException
 	{
@@ -88,7 +63,7 @@ public class CargoDetecEventController {
 	
 	//	List<Event>	allEvents = repository.findEvents(id);
 		modelmap.addAttribute("clientId", id);
-	List<CargoDetEvent>	allObjects = service.getAllCargoDetecEvents();
+	List<EmptyTruckDetEvent>	allObjects = service.getAllCargoDetecEvents();
 	modelmap.addAttribute("allObjects",allObjects);
 	
 //	byte[] image = service.getCargoDetecEventImageById(id);
@@ -119,30 +94,30 @@ public class CargoDetecEventController {
 	
 	
 	
-		return "displayCargoDetecEvent";
+		return "displayEmptyTruckDetEvent";
 	}
 	
 	
 
-	@RequestMapping("/displayCargoDetecEvent1")
-	public String displayCargoDetecEvent1(@RequestParam("id")Long id,ModelMap modelmap)
+	@RequestMapping("/displayEmptyTruckDetEvent1")
+	public String displayEmptyTruckDetEvent1(@RequestParam("id")Long id,ModelMap modelmap)
 	{
 		
 		
 	//	List<Objects>	allObjects = repository.findObjects(id);
 		modelmap.addAttribute("clientId", id);
 		System.out.println("till here");
-	List<CargoDetEvent>	allObjects = service.getAllCargoDetecEvents();
+	List<EmptyTruckDetEvent>	allObjects = service.getAllCargoDetecEvents();
 	modelmap.addAttribute("allObjects",allObjects);
 	
 	
 	
-		return "displayCargoDetecEvent";
+		return "displayEmptyTruckDetEvent";
 	}
 
 	
-	@RequestMapping("/displayCargoDetecEventImage")
-	public String displayCargoDetecEventImage(@RequestParam("id")Long id,ModelMap modelmap,
+	@RequestMapping("/displayEmptyTruckDetEventImage")
+	public String displayEmptyTruckDetEventImage(@RequestParam("id")Long id,ModelMap modelmap,
 			HttpServletRequest request,HttpServletResponse response)
 	{
 		
@@ -150,7 +125,7 @@ public class CargoDetecEventController {
 	//	List<Objects>	allObjects = repository.findObjects(id);
 		modelmap.addAttribute("clientId", id);
 		System.out.println("till here");
-	List<CargoDetEvent>	allObjects = service.getAllCargoDetecEvents();
+	List<EmptyTruckDetEvent>	allObjects = service.getAllCargoDetecEvents();
 	modelmap.addAttribute("allObjects",allObjects);
 	
 	byte[] image = service.getCargoDetecEventImageById(id);
@@ -165,22 +140,22 @@ public class CargoDetecEventController {
 		e1.printStackTrace();
 	}
 	
-		return "displayCargoDetecEvent";
+		return "displayEmptyTruckDetEvent";
 	}
 
 	
 	
 
-	@RequestMapping("/displayCargoDetecEventPointCloud")
-	public ResponseEntity<ByteArrayResource> displayCargoDetecEventPointCloud(@RequestParam("id")Long id)
+	@RequestMapping("/displayEmptyTruckDetEventPointCloud")
+	public ResponseEntity<ByteArrayResource> displayEmptyTruckDetEventPointCloud(@RequestParam("id")Long id)
 	{
 		
 		
-	CargoDetEvent doc  = service.getCargoDetecEventById(id);
+		EmptyTruckDetEvent doc  = service.getCargoDetecEventById(id);
 	
 	return ResponseEntity.ok()
 		//	.contentType(MediaType.parseMediaType("/doc.getCargoeventtype()"))
-			.header(HttpHeaders.CONTENT_DISPOSITION,"attachment:filename=\""+doc.getCargoeventtype()+"\"")
+			.header(HttpHeaders.CONTENT_DISPOSITION,"attachment:filename=\""+doc.getEmptytruckdeteventtype()+"\"")
 			.body(new ByteArrayResource(doc.getPointcloud()));
 	
 	}
@@ -189,38 +164,37 @@ public class CargoDetecEventController {
 	
 	
 
-	@RequestMapping("/deleteCargoDetecEvent")
+	@RequestMapping("/deleteEmptyTruckDetEvent")
 	public String deleteObject(@RequestParam("id")Long id,ModelMap modelmap)
 	{
-		CargoDetEvent object = service.getCargoDetecEventById(id);
+		EmptyTruckDetEvent object = service.getCargoDetecEventById(id);
 		
 		service.deleteCargoDetecEvent(object);
 		
 		
-		List<CargoDetEvent>	allObjects = service.getAllCargoDetecEvents();
+		List<EmptyTruckDetEvent>	allObjects = service.getAllCargoDetecEvents();
 		modelmap.addAttribute("allCargoDetecEvents",allObjects);
-		return "displayCargoDetecEvents";
+		return "displayEmptyTruckDetEvents";
 	}
 	
-	@RequestMapping("/showUpdateCargoDetecEvent")
+	@RequestMapping("/showUpdateEmptyTruckDetEvent")
 	public String updateObjet(@RequestParam("id")Long id,ModelMap modekmap)
 	{
-		CargoDetEvent object =	service.getCargoDetecEventById(id);
+		EmptyTruckDetEvent object =	service.getCargoDetecEventById(id);
 	modekmap.addAttribute("object", object);
-		return "updateCargoDetecEvent";
+		return "updateEmptyTruckDetEvent";
 	}
 	
-	@RequestMapping("/updatedCargoDetecEvent")
-	public String updatedObject(@ModelAttribute("object")CargoDetEvent object,ModelMap modelmap)
+	@RequestMapping("/updatedEmptyTruckDetEvent")
+	public String updatedObject(@ModelAttribute("object")EmptyTruckDetEvent object,ModelMap modelmap)
 	{
 		
 		service.updateCargoDetecEvent(object);
 		
 		
-		List<CargoDetEvent>	allObjects = service.getAllCargoDetecEvents();
+		List<EmptyTruckDetEvent>	allObjects = service.getAllCargoDetecEvents();
 		modelmap.addAttribute("allCargoDetecEvents",allObjects);
-		return "displayCargoDetecEvents";
+		return "displayEmptyTruckDetEvents";
 	}
 	
-
 }

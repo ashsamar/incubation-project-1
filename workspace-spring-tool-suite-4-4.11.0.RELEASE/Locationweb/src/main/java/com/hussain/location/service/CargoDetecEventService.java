@@ -15,4 +15,7 @@ public interface CargoDetecEventService {
 	void deleteCargoDetecEvent(CargoDetEvent cargoDetecEvent);
 	CargoDetEvent getCargoDetecEventById(Long id);
 	List<CargoDetEvent> getAllCargoDetecEvents();
+	
+	
+	byte[] getCargoDetecEventImageById(Long id);
 }

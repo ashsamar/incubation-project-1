@@ -12,5 +12,8 @@ public interface DoorDetEventService {
 	void deleteCargoDetecEvent(DoorDetEvent doorDetecEvent);
 	DoorDetEvent getCargoDetecEventById(Long id);
 	List<DoorDetEvent> getAllCargoDetecEvents();
+	
+	
+	byte[] getCargoDetecEventImageById(Long id);
 
 }

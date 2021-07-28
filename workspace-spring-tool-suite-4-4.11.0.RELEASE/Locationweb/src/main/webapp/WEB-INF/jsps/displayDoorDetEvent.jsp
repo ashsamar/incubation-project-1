@@ -1,10 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+        <%@taglib uri="http://java.sun.com/jsp/jstl/core"  prefix ="c"%>
+        
+        
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title> Door Det. Events:</title>
 </head>
 <body style = "background-color:lightblue">
 
@@ -24,7 +28,7 @@ input
 
 <th>CLIENT ID</th>
 
-<th>CARGO EVENT TYPE</th>
+<th>DOOR EVENT TYPE</th>
 
 <th>RECEIVED DATE</th>
 
@@ -32,14 +36,14 @@ input
 
 <th>CONFIDENCE</th>
 
-<th>Door</th>
+<th>DOOR</th>
 
-
+<th>IMAGE</th>
 
 </tr>
 
 
-<c:forEach items="${allObjects}"  var ="object">
+<c:forEach items="${allDoorDetEvent}"  var ="object">
 <tr>
 <td style="text-align:center">${object.id}</td>
 
@@ -60,7 +64,7 @@ input
 <td style="text-align:center">${object.door}</td>
 
 
-
+<td style="text-align:center">${object.image}</td>
 
 
 <td style="text-align:center"> <a href="displayObjects">

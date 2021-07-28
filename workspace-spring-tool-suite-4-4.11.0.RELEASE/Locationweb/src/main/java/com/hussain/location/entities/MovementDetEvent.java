@@ -2,17 +2,21 @@ package com.hussain.location.entities;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.Arrays;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "movementdetevent")
-public class MovementDetEvent {
+public class MovementDetEvent extends AbstractEntity{
 
 	
 	@Id
@@ -36,14 +40,38 @@ public class MovementDetEvent {
 	private float confidence;
 	
 	//Position 
-	private float x;
-	private float y;
-	private float z;
+//	private float x;
+//	private float y;
+//	private float z;
+//	
+//	//Size?
+//	private float width;
+//	private float depth;
+//	private float height;
 	
-	//Size?
-	private float width;
-	private float depth;
-	private float height;
+	
+	
+	
+	@Lob
+	@Basic(fetch = FetchType.LAZY)
+	private byte[] image;
+//	private File depthdata;
+	
+	
+	@Lob
+	@Basic(fetch = FetchType.LAZY)
+	private byte[] pointcloud;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -104,30 +132,24 @@ public class MovementDetEvent {
 	public void setZ(float z) {
 		this.z = z;
 	}
-	public float getWidth() {
-		return width;
+	public byte[] getImage() {
+		return image;
 	}
-	public void setWidth(float width) {
-		this.width = width;
+	public void setImage(byte[] image) {
+		this.image = image;
 	}
-	public float getDepth() {
-		return depth;
+	public byte[] getPointcloud() {
+		return pointcloud;
 	}
-	public void setDepth(float depth) {
-		this.depth = depth;
-	}
-	public float getHeight() {
-		return height;
-	}
-	public void setHeight(float height) {
-		this.height = height;
+	public void setPointcloud(byte[] pointcloud) {
+		this.pointcloud = pointcloud;
 	}
 	@Override
 	public String toString() {
 		return "MovementDetEvent [id=" + id + ", clientid=" + clientid + ", eachmovementeventid=" + eachmovementeventid
 				+ ", movementeventtype=" + movementeventtype + ", receiveddate=" + receiveddate + ", timestamp="
-				+ timestamp + ", confidence=" + confidence + ", x=" + x + ", y=" + y + ", z=" + z + ", width=" + width
-				+ ", depth=" + depth + ", height=" + height + "]";
+				+ timestamp + ", confidence=" + confidence + ", image=" + Arrays.toString(image) + ", pointcloud="
+				+ Arrays.toString(pointcloud) + "]";
 	}
 	
 	

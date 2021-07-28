@@ -44,5 +44,13 @@ public class DoorDetEventServiceImpl implements DoorDetEventService {
 		List<DoorDetEvent> allObjects = repos.findAll();
 		return allObjects;
 	}
+	
+	@Override
+	public byte[] getCargoDetecEventImageById(Long id) {
+		CargoDetEvent object = new CargoDetEvent();
+        return	repos.getById(id).getImage();
+
+	
+	}
 
 }

@@ -1,77 +1,51 @@
 package com.hussain.location.controllers;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.sql.Blob;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
-import javax.imageio.ImageIO;
-import javax.print.Doc;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.jsf.FacesContextUtils;
 
+import com.hussain.location.entities.AutomaticRecalEvent;
 import com.hussain.location.entities.CargoDetEvent;
-
-
-import com.hussain.location.repos.CargoDetecEventRepository;
-
-import com.hussain.location.service.CargoDetecEventService;
-import com.hussain.location.util.ReportUtil;
+import com.hussain.location.repos.AutomaticRecalEventRepository;
+import com.hussain.location.service.AutomaticRecalEventService;
 
 @Controller
-public class CargoDetecEventController {
+public class AutomaticRecalEventController {
+
+	@Autowired
+	private AutomaticRecalEventRepository repository;
 	
 	@Autowired
-	private CargoDetecEventService service;
-	
-	@Autowired
-	private CargoDetecEventRepository repository;
-	
-	@Autowired
-	private ReportUtil reportUtil;
-	
-	@Autowired
-	private ServletContext servletContext;
-	
+	private AutomaticRecalEventService service;
 	
 	
 	
 
-	@RequestMapping("/showCreateCargoDetecEvent")
+	@RequestMapping("/showCreateAutomaticRecalEvent")
 	public String showCreate()
 	{
-		return "CreateCargoDetecEvent";
+		return "CreateAutomaticRecalEvent";
 	}
 	
-	@RequestMapping("/saveCargoDetecEvent")
-	public String saveCargoDetecEvent(@ModelAttribute("cargoDetecEvent")CargoDetEvent object,ModelMap modelmap)
+	@RequestMapping("/saveAutomaticRecalEvent")
+	public String saveCargoDetecEvent(@ModelAttribute("automaticRecalEvent")AutomaticRecalEvent object,ModelMap modelmap)
 	{
 		
-		CargoDetEvent savedObject = service.saveCargoDetecEvent(object);
+		AutomaticRecalEvent savedObject = service.saveCargoDetecEvent(object);
 		
 	//	String msg = "succesfully saved with id: " +savedObject.getId();
 		
@@ -80,7 +54,7 @@ public class CargoDetecEventController {
 		return "CreateCargoDetecEvent";
 	}
 	
-	@RequestMapping("/displayCargoDetecEvent")
+	@RequestMapping("/displayAutomaticRecalDetEvent")
 	public String displayCargoDetecEvent(@RequestParam("id")Long id,ModelMap modelmap, HttpServletResponse response) throws 
 	ServletException,SQLException
 	{
@@ -88,7 +62,7 @@ public class CargoDetecEventController {
 	
 	//	List<Event>	allEvents = repository.findEvents(id);
 		modelmap.addAttribute("clientId", id);
-	List<CargoDetEvent>	allObjects = service.getAllCargoDetecEvents();
+	List<AutomaticRecalEvent>	allObjects = service.getAllCargoDetecEvents();
 	modelmap.addAttribute("allObjects",allObjects);
 	
 //	byte[] image = service.getCargoDetecEventImageById(id);
@@ -119,12 +93,12 @@ public class CargoDetecEventController {
 	
 	
 	
-		return "displayCargoDetecEvent";
+		return "displayAutomaticRecalEvent";
 	}
 	
 	
 
-	@RequestMapping("/displayCargoDetecEvent1")
+	@RequestMapping("/displayAutomaticRecalDetEvent1")
 	public String displayCargoDetecEvent1(@RequestParam("id")Long id,ModelMap modelmap)
 	{
 		
@@ -132,16 +106,16 @@ public class CargoDetecEventController {
 	//	List<Objects>	allObjects = repository.findObjects(id);
 		modelmap.addAttribute("clientId", id);
 		System.out.println("till here");
-	List<CargoDetEvent>	allObjects = service.getAllCargoDetecEvents();
+	List<AutomaticRecalEvent>	allObjects = service.getAllCargoDetecEvents();
 	modelmap.addAttribute("allObjects",allObjects);
 	
 	
 	
-		return "displayCargoDetecEvent";
+		return "displayAutomaticRecalEvent";
 	}
 
 	
-	@RequestMapping("/displayCargoDetecEventImage")
+	@RequestMapping("/displayAutomaticRecalDetEventImage")
 	public String displayCargoDetecEventImage(@RequestParam("id")Long id,ModelMap modelmap,
 			HttpServletRequest request,HttpServletResponse response)
 	{
@@ -150,7 +124,7 @@ public class CargoDetecEventController {
 	//	List<Objects>	allObjects = repository.findObjects(id);
 		modelmap.addAttribute("clientId", id);
 		System.out.println("till here");
-	List<CargoDetEvent>	allObjects = service.getAllCargoDetecEvents();
+	List<AutomaticRecalEvent>	allObjects = service.getAllCargoDetecEvents();
 	modelmap.addAttribute("allObjects",allObjects);
 	
 	byte[] image = service.getCargoDetecEventImageById(id);
@@ -165,22 +139,22 @@ public class CargoDetecEventController {
 		e1.printStackTrace();
 	}
 	
-		return "displayCargoDetecEvent";
+		return "displayAutomaticRecalEvent";
 	}
 
 	
 	
 
-	@RequestMapping("/displayCargoDetecEventPointCloud")
+	@RequestMapping("/displayAutomaticRecalDetEventPointCloud")
 	public ResponseEntity<ByteArrayResource> displayCargoDetecEventPointCloud(@RequestParam("id")Long id)
 	{
 		
 		
-	CargoDetEvent doc  = service.getCargoDetecEventById(id);
+		AutomaticRecalEvent doc  = service.getCargoDetecEventById(id);
 	
 	return ResponseEntity.ok()
 		//	.contentType(MediaType.parseMediaType("/doc.getCargoeventtype()"))
-			.header(HttpHeaders.CONTENT_DISPOSITION,"attachment:filename=\""+doc.getCargoeventtype()+"\"")
+			.header(HttpHeaders.CONTENT_DISPOSITION,"attachment:filename=\""+doc.getAutomaticrecaleventtype()+"\"")
 			.body(new ByteArrayResource(doc.getPointcloud()));
 	
 	}
@@ -189,38 +163,40 @@ public class CargoDetecEventController {
 	
 	
 
-	@RequestMapping("/deleteCargoDetecEvent")
+	@RequestMapping("/deleteAutomaticRecalDetEvent")
 	public String deleteObject(@RequestParam("id")Long id,ModelMap modelmap)
 	{
-		CargoDetEvent object = service.getCargoDetecEventById(id);
+		AutomaticRecalEvent object = service.getCargoDetecEventById(id);
 		
 		service.deleteCargoDetecEvent(object);
 		
 		
-		List<CargoDetEvent>	allObjects = service.getAllCargoDetecEvents();
+		List<AutomaticRecalEvent>	allObjects = service.getAllCargoDetecEvents();
 		modelmap.addAttribute("allCargoDetecEvents",allObjects);
 		return "displayCargoDetecEvents";
 	}
 	
-	@RequestMapping("/showUpdateCargoDetecEvent")
+	@RequestMapping("/showUpdateAutomaticRecalDetEvent")
 	public String updateObjet(@RequestParam("id")Long id,ModelMap modekmap)
 	{
-		CargoDetEvent object =	service.getCargoDetecEventById(id);
+		AutomaticRecalEvent object =	service.getCargoDetecEventById(id);
 	modekmap.addAttribute("object", object);
-		return "updateCargoDetecEvent";
+		return "updateAutomaticRecalEvent";
 	}
 	
-	@RequestMapping("/updatedCargoDetecEvent")
-	public String updatedObject(@ModelAttribute("object")CargoDetEvent object,ModelMap modelmap)
+	@RequestMapping("/updatedAutomaticRecalDetEvent")
+	public String updatedObject(@ModelAttribute("object")AutomaticRecalEvent object,ModelMap modelmap)
 	{
 		
 		service.updateCargoDetecEvent(object);
 		
 		
-		List<CargoDetEvent>	allObjects = service.getAllCargoDetecEvents();
+		List<AutomaticRecalEvent>	allObjects = service.getAllCargoDetecEvents();
 		modelmap.addAttribute("allCargoDetecEvents",allObjects);
 		return "displayCargoDetecEvents";
 	}
 	
 
+	
+	
 }
