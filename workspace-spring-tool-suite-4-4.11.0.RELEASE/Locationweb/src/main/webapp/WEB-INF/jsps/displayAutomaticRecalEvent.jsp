@@ -42,7 +42,6 @@ Filter:<input type="text" name = "keyword" required/>
 
 <th>STATUS</th>
 
-<th>IMAGES</th>
 
 </tr>
 
@@ -66,10 +65,6 @@ Filter:<input type="text" name = "keyword" required/>
 <td style="text-align:center">${object.status}</td>
 
 
-
-
-
-<td style="text-align:center"><img src="${object.image}" width=10" height="10"></td>
 
 
 

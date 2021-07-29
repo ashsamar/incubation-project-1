@@ -56,11 +56,11 @@ input
         <td style="text-align:center"> <a href="displayCargoDetecEvent?id=${clientId}">
         <img alt="click here" src="/var/lib/mysql-files/image/enterkeyimage.png" width=50" height="70"></a>-->
         
-       <td style="text-align:center"> <button  style=" background-color:red;     height:50px;width:50px "  type="button"  onclick="location.href='/displayCargoDetecEvent?id=${clientId}'">Details!</button>
+       <td style="text-align:center"> <button  style=" background-color:red;     height:50px;width:70px "  type="button"  onclick="location.href='/displayCargoDetecEvent?id=${clientId}'">Details!</button>
        
-     <button  style=" background-color:blue;    height:50px;width:50px  background-color:red;"    type="button"  onclick="location.href='/displayCargoDetecEventImage?id=${clientId}'">Image!</button>
+     <button  style=" background-color:lightgreen;    height:50px; width:70px"      type="button"  onclick="location.href='/displayCargoDetecEventImage?id=${clientId}'">Image!</button>
           
-      <button style="background-color:green;    height:50px;width:50px "     type="button"  onclick="location.href='/displayCargoDetecEventPointCloud?id=${clientId}'">3DPC!</button></td>
+      <button style="background-color:pink;    height:50px; width:70px "     type="button"  onclick="location.href='/displayCargoDetecEventPointCloud?id=${clientId}'">3DPC!</button></td>
         
     </c:when>
     
@@ -71,11 +71,11 @@ input
          <img alt="click here" src="/Downloads/enterkeyimage.png" width=50" height="70"></a></td>-->
         
         
-         <td style="text-align:center"> <button  style=" background-color:red;     height:50px;width:50px "  type="button"  onclick="location.href='/displayDoorDetEvent1?id=${clientId}'">Details!</button>
+         <td style="text-align:center"> <button  style=" background-color:red;     height:50px;width:70px "  type="button"  onclick="location.href='/displayDoorDetEvent1?id=${clientId}'">Details!</button>
        
-     <button  style=" background-color:blue;    height:50px;width:50px  background-color:red;"    type="button"  onclick="location.href='/displayDoorDetEventImage?id=${clientId}'">Image!</button>
+     <button  style=" background-color:lightgreen;    height:50px;width:70px"    type="button"  onclick="location.href='/displayDoorDetEventImage?id=${clientId}'">Image!</button>
           
-      <button style="background-color:green;    height:50px;width:50px "     type="button"  onclick="location.href='/displayDoorDetEventPointCloud?id=${clientId}'">3DPC!</button></td>
+      <button style="background-color:pink;    height:50px;width:70px "     type="button"  onclick="location.href='/displayDoorDetEventPointCloud?id=${clientId}'">3DPC!</button></td>
         
         
     </c:when>
@@ -87,11 +87,11 @@ input
         
         
          
-      <td style="text-align:center"> <button  style=" background-color:red;     height:50px;width:50px "  type="button"  onclick="location.href='/displayEmptyTruckDetEvent1?id=${clientId}'">Details!</button>
+      <td style="text-align:center"> <button  style=" background-color:red;     height:50px;width:70px "  type="button"  onclick="location.href='/displayEmptyTruckDetEvent1?id=${clientId}'">Details!</button>
        
-     <button  style=" background-color:blue;    height:50px;width:50px  background-color:red;"    type="button"  onclick="location.href='/displayEmptyTruckDetEventImage?id=${clientId}'">Image!</button>
+     <button  style=" background-color:lightgreen;    height:50px;width:70px"    type="button"  onclick="location.href='/displayEmptyTruckDetEventImage?id=${clientId}'">Image!</button>
           
-      <button style="background-color:green;    height:50px;width:50px "     type="button"  onclick="location.href='/displayEmptyTruckDetEventPointCloud?id=${clientId}'">3DPC!</button></td>
+      <button style="background-color:pink;    height:50px;width:70px "     type="button"  onclick="location.href='/displayEmptyTruckDetEventPointCloud?id=${clientId}'">3DPC!</button></td>
         
         
         
@@ -107,11 +107,11 @@ input
         
         
          
-      <td style="text-align:center"> <button  style=" background-color:red;     height:50px;width:50px "  type="button"  onclick="location.href='/displayPersonDetEvent1?id=${clientId}'">Details!</button>
+      <td style="text-align:center"> <button  style=" background-color:red;     height:50px;width:70px "  type="button"  onclick="location.href='/displayPersonDetEvent1?id=${clientId}'">Details!</button>
        
-     <button  style=" background-color:blue;    height:50px;width:50px  background-color:red;"    type="button"  onclick="location.href='/displayPersonDetEventImage?id=${clientId}'">Image!</button>
+     <button  style=" background-color:lightgreen;    height:50px;width:70px"    type="button"  onclick="location.href='/displayPersonDetEventImage?id=${clientId}'">Image!</button>
           
-      <button style="background-color:green;    height:50px;width:50px "     type="button"  onclick="location.href='/displayPersonDetEventPointCloud?id=${clientId}'">3DPC!</button></td>
+      <button style="background-color:pink;    height:50px;width:70px "     type="button"  onclick="location.href='/displayPersonDetEventPointCloud?id=${clientId}'">3DPC!</button></td>
         
         
     </c:when>
@@ -126,11 +126,11 @@ input
         
         
          
-       <td style="text-align:center"> <button  style=" background-color:red;     height:50px;width:50px "  type="button"  onclick="location.href='/displayMovementDetEvent?id=${clientId}'">Details!</button>
+       <td style="text-align:center"> <button  style=" background-color:red;     height:50px;width:70px "  type="button"  onclick="location.href='/displayMovementDetEvent?id=${clientId}'">Details!</button>
        
-     <button  style=" background-color:blue;    height:50px;width:50px  background-color:red;"    type="button"  onclick="location.href='/displayMovementDetEventImage?id=${clientId}'">Image!</button>
+     <button  style=" background-color:lightgreen;    height:50px;width:70px"    type="button"  onclick="location.href='/displayMovementDetEventImage?id=${clientId}'">Image!</button>
           
-      <button style="background-color:green;    height:50px;width:50px "     type="button"  onclick="location.href='/displayMovementDetEventPointCloud?id=${clientId}'">3DPC!</button></td>
+      <button style="background-color:pink;    height:50px;width:70px "     type="button"  onclick="location.href='/displayMovementDetEventPointCloud?id=${clientId}'">3DPC!</button></td>
         
         
     </c:when>
@@ -144,11 +144,7 @@ input
         
         
          
-       <td style="text-align:center"> <button  style=" background-color:red;     height:50px;width:50px "  type="button"  onclick="location.href='/displayAutomaticRecalDetEvent1?id=${clientId}'">Details!</button>
-       
-     <button  style=" background-color:blue;    height:50px;width:50px  background-color:red;"    type="button"  onclick="location.href='/displayAutomaticRecalDetEventImage?id=${clientId}'">Image!</button>
-          
-      <button style="background-color:green;    height:50px;width:50px "     type="button"  onclick="location.href='/displayAutomaticRecalDetEventPointCloud?id=${clientId}'">3DPC!</button></td>
+       <td style="text-align:center"> <button  style=" background-color:red;     height:50px;width:70px "  type="button"  onclick="location.href='/displayAutomaticRecalDetEvent1?id=${clientId}'">Details!</button></td>
         
         
     </c:when>
