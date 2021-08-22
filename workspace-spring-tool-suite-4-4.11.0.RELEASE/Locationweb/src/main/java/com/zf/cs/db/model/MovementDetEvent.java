@@ -1,8 +1,9 @@
 package com.zf.cs.db.model;
 
-import java.sql.Date;
+
 import java.sql.Timestamp;
 import java.util.Arrays;
+import java.util.Date;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -13,6 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "movementdetevent")
@@ -32,7 +35,8 @@ public class MovementDetEvent extends AbstractEntity{
 
 	private String movementeventtype; // removed, added, updated, in users guide its called id
 	
-	private Date receiveddate;
+	//@Temporal(TemporalType.TIMESTAMP)
+	private String receiveddate;
 	
 	private Timestamp timestamp; // in users guide its called "t"
 	
@@ -96,12 +100,7 @@ public class MovementDetEvent extends AbstractEntity{
 	public void setMovementeventtype(String movementeventtype) {
 		this.movementeventtype = movementeventtype;
 	}
-	public Date getReceiveddate() {
-		return receiveddate;
-	}
-	public void setReceiveddate(Date receiveddate) {
-		this.receiveddate = receiveddate;
-	}
+
 	public Timestamp getTimestamp() {
 		return timestamp;
 	}
@@ -144,6 +143,12 @@ public class MovementDetEvent extends AbstractEntity{
 	public void setPointcloud(byte[] pointcloud) {
 		this.pointcloud = pointcloud;
 	}
+	public String getReceiveddate() {
+		return receiveddate;
+	}
+	public void setReceiveddate(String receiveddate) {
+		this.receiveddate = receiveddate;
+	}
 	@Override
 	public String toString() {
 		return "MovementDetEvent [id=" + id + ", clientid=" + clientid + ", eachmovementeventid=" + eachmovementeventid
@@ -151,9 +156,6 @@ public class MovementDetEvent extends AbstractEntity{
 				+ timestamp + ", confidence=" + confidence + ", image=" + Arrays.toString(image) + ", pointcloud="
 				+ Arrays.toString(pointcloud) + "]";
 	}
-	
-	
-	
 	
 
 	

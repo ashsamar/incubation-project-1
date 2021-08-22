@@ -7,9 +7,7 @@ import com.zf.cs.db.model.DoorDetEvent;
 
 public interface DoorDetEventService {
 	
-	DoorDetEvent saveCargoDetecEvent(DoorDetEvent doorDetecEvent);
-	DoorDetEvent updateCargoDetecEvent(DoorDetEvent doorDetecEvent);
-	void deleteCargoDetecEvent(DoorDetEvent doorDetecEvent);
+	
 	DoorDetEvent getCargoDetecEventById(Long id);
 	List<DoorDetEvent> getAllCargoDetecEvents();
 	

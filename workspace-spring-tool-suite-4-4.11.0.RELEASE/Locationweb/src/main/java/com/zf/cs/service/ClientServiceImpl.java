@@ -46,5 +46,12 @@ public class ClientServiceImpl implements ClientService {
 		List<Client> allClients = repos.findAll();
 		return allClients;
 	}
+	
+//	@Override
+//	public ClientTrailerConfig getTrailerConfig(id..) {
+//		List<ClientTrailerConfig> allClients = repos.findById().;
+//		// 
+//		return allClients;
+//	}
 
 }

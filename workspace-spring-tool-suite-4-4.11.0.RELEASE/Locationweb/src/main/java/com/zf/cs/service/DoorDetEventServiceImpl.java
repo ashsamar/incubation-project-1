@@ -16,21 +16,7 @@ public class DoorDetEventServiceImpl implements DoorDetEventService {
 	@Autowired
 	DoorDetEventRepository repos;
 	
-	@Override
-	public DoorDetEvent saveCargoDetecEvent(DoorDetEvent doorDetecEvent) {
-		return repos.save(doorDetecEvent);
-	}
 
-	@Override
-	public DoorDetEvent updateCargoDetecEvent(DoorDetEvent doorDetecEvent) {
-		return repos.save(doorDetecEvent);
-	}
-
-	@Override
-	public void deleteCargoDetecEvent(DoorDetEvent doorDetecEvent) {
-		repos.delete(doorDetecEvent);
-
-	}
 
 	@Override
 	public DoorDetEvent getCargoDetecEventById(Long id) {

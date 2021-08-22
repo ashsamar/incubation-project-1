@@ -1,6 +1,7 @@
 package com.zf.cs.db.controller;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -42,56 +44,31 @@ public class MovementDetEventController {
 	private ServletContext servletContext;
 	
 
-	@RequestMapping("/showCreateMovementDetEvent")
-	public String showCreate()
-	{
-		return "CreateMovementDetEvent";
-	}
 	
-	@RequestMapping("/saveCreateMovementDetEvent")
-	public String saveCargoDetecEvent(@ModelAttribute("movementDetEvent")MovementDetEvent object,ModelMap modelmap)
-	{
-		
-		MovementDetEvent savedObject = service.saveCargoDetecEvent(object);
-		
-	//	String msg = "succesfully saved with id: " +savedObject.getId();
-		
-	//	modelmap.addAttribute("msg", msg);
-		
-		return "CreateMovementDetEvent";
-	}
 	
-	@RequestMapping("/displayMovementDetEvent")
-	public String displayCargoDetecEvent(@RequestParam("id")Long id,ModelMap modelmap)
-	{
-		
-		
-	//	List<Event>	allEvents = repository.findEvents(id);
-		modelmap.addAttribute("clientId", id);
-	List<MovementDetEvent>	allObjects = service.getAllCargoDetecEvents();
-	modelmap.addAttribute("allObjects",allObjects);
 	
+
+	@RequestMapping("/displayOneMovementDetEvent")
+	public String updateObjet(@RequestParam("id")String receivedDate,ModelMap modekmap)
+	{
+		MovementDetEvent object =	repository.findByReceivedDate(receivedDate);
+	modekmap.addAttribute("object", object);
 		return "displayMovementDetEvent";
 	}
 	
 	
-
-	@RequestMapping("/displayMovementDetEvent1")
-	public String displayCargoDetecEvent1(@RequestParam("id")Long id,ModelMap modelmap)
+	@RequestMapping("/displayAllMovementDetEvent")
+	public String allMovementDetEvent(ModelMap modekmap)
 	{
-		
-		
-	//	List<Objects>	allObjects = repository.findObjects(id);
-		modelmap.addAttribute("clientId", id);
-		System.out.println("till here");
-	List<MovementDetEvent>	allObjects = service.getAllCargoDetecEvents();
-	modelmap.addAttribute("allObjects",allObjects);
+		List<MovementDetEvent> object =	repository.findAll();
+	modekmap.addAttribute("allObjects", object);
 	
 	
-	
-		return "displayMovementDetEvent";
+		return "allMovementDetEventDisplay";
 	}
-
+	
+	
+	
 	
 	
 	@RequestMapping("/displayMovementDetEventImage")
@@ -149,37 +126,7 @@ public class MovementDetEventController {
 	
 	
 
-	@RequestMapping("/deleteMovementDetEvent")
-	public String deleteObject(@RequestParam("id")Long id,ModelMap modelmap)
-	{
-		MovementDetEvent object = service.getCargoDetecEventById(id);
-		
-		service.deleteCargoDetecEvent(object);
-		
-		
-		List<MovementDetEvent>	allObjects = service.getAllCargoDetecEvents();
-		modelmap.addAttribute("allMovementDetEvents",allObjects);
-		return "displayMovementDetEvents";
-	}
+
 	
-	@RequestMapping("/showUpdateMovementDetEvent")
-	public String updateObjet(@RequestParam("id")Long id,ModelMap modekmap)
-	{
-		MovementDetEvent object =	service.getCargoDetecEventById(id);
-	modekmap.addAttribute("object", object);
-		return "updateMovementDetEvent";
-	}
-	
-	@RequestMapping("/updatedMovementDetEvent")
-	public String updatedObject(@ModelAttribute("object")MovementDetEvent object,ModelMap modelmap)
-	{
-		
-		service.updateCargoDetecEvent(object);
-		
-		
-		List<MovementDetEvent>	allObjects = service.getAllCargoDetecEvents();
-		modelmap.addAttribute("allCargoDetecEvents",allObjects);
-		return "displayMovementDetEvents";
-	}
 	
 }

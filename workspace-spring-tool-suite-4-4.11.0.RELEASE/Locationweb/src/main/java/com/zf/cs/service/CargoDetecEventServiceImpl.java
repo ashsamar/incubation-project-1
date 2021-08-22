@@ -20,9 +20,8 @@ public class CargoDetecEventServiceImpl implements CargoDetecEventService {
 
 	@Override
 	public CargoDetEvent getCargoDetecEventById(Long id) {
-		CargoDetEvent object = new CargoDetEvent();
-		object = repos.findById(id).get();
-		return object;
+	
+		return repos.findById(id).get();
 	}
 
 	@Override
@@ -33,7 +32,7 @@ public class CargoDetecEventServiceImpl implements CargoDetecEventService {
 
 	@Override
 	public byte[] getCargoDetecEventImageById(Long id) {
-		CargoDetEvent object = new CargoDetEvent();
+		
         return	repos.getById(id).getImage();
 
 	

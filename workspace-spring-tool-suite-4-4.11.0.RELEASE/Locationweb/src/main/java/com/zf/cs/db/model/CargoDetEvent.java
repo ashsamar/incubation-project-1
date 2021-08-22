@@ -1,9 +1,10 @@
 package com.zf.cs.db.model;
 
 import java.sql.Blob;
-import java.sql.Date;
+
 import java.sql.Timestamp;
 import java.util.Arrays;
+import java.util.Date;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -14,7 +15,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+
+
 
 @Entity
 @Table(name = "cargodetevent")
@@ -34,7 +39,8 @@ public class CargoDetEvent extends AbstractEntity{
 
 	private String cargoeventtype; // removed, added, updated, in users guide its called id
 	
-	private Date receiveddate;
+	
+	private String receiveddate;
 	
 	private Timestamp timestamp; // in users guide its called "t"
 	
@@ -58,6 +64,7 @@ public class CargoDetEvent extends AbstractEntity{
 	
 	@Lob
 	@Basic(fetch = FetchType.LAZY)
+	@Column(name = "image" ,length =Integer.MAX_VALUE) 
 	private byte[] image;
 //	private File depthdata;
 	
@@ -66,6 +73,23 @@ public class CargoDetEvent extends AbstractEntity{
 	@Basic(fetch = FetchType.LAZY)
 	private byte[] pointcloud;
 
+	
+	
+	
+	public static String convertBinImageToString(byte[] binImage) {
+	    if(binImage!=null && binImage.length>0) {
+	        return java.util.Base64.getEncoder().encodeToString(binImage);
+	    }
+	    else
+	        return "";
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	public Long getId() {
 		return id;
@@ -91,12 +115,7 @@ public class CargoDetEvent extends AbstractEntity{
 	public void setCargoeventtype(String cargoeventtype) {
 		this.cargoeventtype = cargoeventtype;
 	}
-	public Date getReceiveddate() {
-		return receiveddate;
-	}
-	public void setReceiveddate(Date receiveddate) {
-		this.receiveddate = receiveddate;
-	}
+	
 	public Timestamp getTimestamp() {
 		return timestamp;
 	}
@@ -141,14 +160,22 @@ public class CargoDetEvent extends AbstractEntity{
 	public void setPointcloud(byte[] pointcloud) {
 		this.pointcloud = pointcloud;
 	}
-	@Override
-	public String toString() {
-		return "CargoDetEvent [id=" + id + ", clientid=" + clientid + ", eachcargoeventid=" + eachcargoeventid
-				+ ", cargoeventtype=" + cargoeventtype + ", receiveddate=" + receiveddate + ", timestamp=" + timestamp
-				+ ", confidence=" + confidence + ", sc_width=" + sc_width + ", sc_depth=" + sc_depth + ", sc_height="
-				+ sc_height + ", image=" + Arrays.toString(image) + ", pointcloud=" + Arrays.toString(pointcloud) + "]";
+
+	public void setImage(byte[] image) {
+		this.image = image;
 	}
-	
+
+
+
+	public String getReceiveddate() {
+		return receiveddate;
+	}
+
+
+	public void setReceiveddate(String receiveddate) {
+		this.receiveddate = receiveddate;
+	}
+
 	
 	
 	

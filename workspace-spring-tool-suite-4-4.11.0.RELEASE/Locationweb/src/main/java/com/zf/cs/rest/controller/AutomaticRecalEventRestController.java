@@ -1,5 +1,9 @@
 package com.zf.cs.rest.controller;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,8 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.zf.cs.db.model.AutomaticRecalEvent;
 import com.zf.cs.db.model.CargoDetEvent;
+import com.zf.cs.db.model.Event;
 import com.zf.cs.repository.AutomaticRecalEventRepository;
 import com.zf.cs.repository.CargoDetecEventRepository;
+import com.zf.cs.repository.EventRepository;
+import com.zf.cs.rest.model.AutomaticRecalEventRest;
 
 @RestController
 @RequestMapping("/automaticRecalEvents")
@@ -27,6 +34,9 @@ public class AutomaticRecalEventRestController {
 	
 	@Autowired
 	private AutomaticRecalEventRepository repos;
+	
+	@Autowired
+	private EventRepository eventRepos;
 	
 	
 	@GetMapping("/{id}")
@@ -47,9 +57,44 @@ public class AutomaticRecalEventRestController {
 	}
 	
 	@PostMapping
-	public AutomaticRecalEvent addAutomaticRecalEvent(@RequestBody AutomaticRecalEvent event)
+	public AutomaticRecalEvent addAutomaticRecalEvent(@RequestBody AutomaticRecalEventRest event)
 	{
-		return repos.save(event);
+		
+		
+		
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd : HH:mm:ss");
+		Date date = new Date();
+
+		AutomaticRecalEvent automaticrecalevent = new AutomaticRecalEvent();
+		
+		
+	
+			automaticrecalevent.setReceiveddate(dateFormat.format(date));
+		
+		automaticrecalevent.setId(event.getId()) ;
+		automaticrecalevent.setClientid(event.getClientid()) ;
+		automaticrecalevent.setAutomaticrecaleventtype(event.getAutomaticrecaleventtype()) ;
+		automaticrecalevent.setTimestamp(event.getTimestamp()) ;
+		automaticrecalevent.setAnglediff(event.getAnglediff()) ;
+		automaticrecalevent.setStatus(event.getStatus()) ;
+		
+		
+		
+		
+		Event event1 = new Event();
+		
+		event1.setEventsid(event.getAutomaticrecaleventtype());
+		
+			event1.setReceiveddate(dateFormat.format(date));
+		
+		event1.setTimestamp(event.getTimestamp());
+		event1.setClientid(event.getClientid());
+
+		
+		eventRepos.save(event1);
+		
+		
+		return repos.save(automaticrecalevent);
 	}
 	
 	

@@ -1,8 +1,9 @@
 package com.zf.cs.db.model;
 
-import java.sql.Date;
+
 import java.sql.Timestamp;
 import java.util.Arrays;
+import java.util.Date;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -13,6 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name= "persondetevent")
@@ -29,7 +32,8 @@ public class PersonDetEvent {
 
 	private String persondeteventtype; // removed, added, updated, in users guide its called id
 	
-	private Date receiveddate;
+	//@Temporal(TemporalType.TIMESTAMP)
+	private String receiveddate;
 	
 	private Timestamp timestamp; // in users guide its called "t"
 	
@@ -80,16 +84,6 @@ public class PersonDetEvent {
 
 	public void setPersondeteventtype(String persondeteventtype) {
 		this.persondeteventtype = persondeteventtype;
-	}
-
-
-	public Date getReceiveddate() {
-		return receiveddate;
-	}
-
-
-	public void setReceiveddate(Date receiveddate) {
-		this.receiveddate = receiveddate;
 	}
 
 
@@ -173,6 +167,16 @@ public class PersonDetEvent {
 	}
 
 
+	public String getReceiveddate() {
+		return receiveddate;
+	}
+
+
+	public void setReceiveddate(String receiveddate) {
+		this.receiveddate = receiveddate;
+	}
+
+
 	@Override
 	public String toString() {
 		return "PersonDetEvent [id=" + id + ", clientid=" + clientid + ", persondeteventtype=" + persondeteventtype
@@ -180,6 +184,9 @@ public class PersonDetEvent {
 				+ x + ", y=" + y + ", z=" + z + ", height=" + height + ", image=" + Arrays.toString(image)
 				+ ", pointcloud=" + Arrays.toString(pointcloud) + "]";
 	}
+
+
+
 	
 	
 	

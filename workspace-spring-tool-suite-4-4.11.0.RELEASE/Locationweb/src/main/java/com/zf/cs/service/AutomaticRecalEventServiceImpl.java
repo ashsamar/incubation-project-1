@@ -1,5 +1,6 @@
 package com.zf.cs.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,17 +34,16 @@ public class AutomaticRecalEventServiceImpl implements AutomaticRecalEventServic
 
 	}
 
-	@Override
-	public AutomaticRecalEvent getCargoDetecEventById(Long id) {
-		AutomaticRecalEvent object = new AutomaticRecalEvent();
-		object = repos.findById(id).get();
-		return object;
-	}
-
+	
 	@Override
 	public List<AutomaticRecalEvent> getAllCargoDetecEvents() {
 		List<AutomaticRecalEvent> allObjects = repos.findAll();
 		return allObjects;
+	}
+
+	@Override
+	public AutomaticRecalEvent getCargoDetecEventById(Long id) {
+		return repos.findById(id).get();
 	}
 
 	

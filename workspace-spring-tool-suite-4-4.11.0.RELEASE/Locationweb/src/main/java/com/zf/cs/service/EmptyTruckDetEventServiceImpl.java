@@ -18,21 +18,7 @@ public class EmptyTruckDetEventServiceImpl implements EmptyTruckDetEventService 
 	private EmptyTruckDetEventRepository repos;
 	
 	
-	@Override
-	public EmptyTruckDetEvent saveCargoDetecEvent(EmptyTruckDetEvent cargoDetecEvent) {
-		return repos.save(cargoDetecEvent);
-	}
-
-	@Override
-	public EmptyTruckDetEvent updateCargoDetecEvent(EmptyTruckDetEvent cargoDetecEvent) {
-		return repos.save(cargoDetecEvent);
-	}
-
-	@Override
-	public void deleteCargoDetecEvent(EmptyTruckDetEvent cargoDetecEvent) {
-		repos.delete(cargoDetecEvent);
-
-	}
+	
 
 	@Override
 	public EmptyTruckDetEvent getCargoDetecEventById(Long id) {

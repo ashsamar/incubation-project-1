@@ -1,8 +1,9 @@
 package com.zf.cs.db.model;
 
-import java.sql.Date;
+
 import java.sql.Timestamp;
 import java.util.Arrays;
+import java.util.Date;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -13,6 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "doordetevent")
@@ -29,7 +32,7 @@ public class DoorDetEvent {
 	private String dooreventtype; // open, closed in users guide its called id
 	
 	@Column(name = "receiveddate")
-	private Date receiveddate;
+	private String receiveddate;
 	
 	@Column(name = "timestamp")
 	private Timestamp timestamp; // in users guide its called "t"
@@ -78,14 +81,7 @@ public class DoorDetEvent {
 		this.dooreventtype = dooreventtype;
 	}
 
-	public Date getReceiveddate() {
-		return receiveddate;
-	}
-
-	public void setReceiveddate(Date receiveddate) {
-		this.receiveddate = receiveddate;
-	}
-
+	
 	public Timestamp getTimestamp() {
 		return timestamp;
 	}
@@ -126,6 +122,14 @@ public class DoorDetEvent {
 		this.pointcloud = pointcloud;
 	}
 
+	public String getReceiveddate() {
+		return receiveddate;
+	}
+
+	public void setReceiveddate(String receiveddate) {
+		this.receiveddate = receiveddate;
+	}
+
 	@Override
 	public String toString() {
 		return "DoorDetEvent [id=" + id + ", clientid=" + clientid + ", dooreventtype=" + dooreventtype
@@ -134,6 +138,8 @@ public class DoorDetEvent {
 				+ "]";
 	}
 
+	
+	
 	
 	
 }

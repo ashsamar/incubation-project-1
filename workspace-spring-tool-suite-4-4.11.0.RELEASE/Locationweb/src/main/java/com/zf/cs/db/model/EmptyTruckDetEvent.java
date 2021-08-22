@@ -1,8 +1,9 @@
 package com.zf.cs.db.model;
 
-import java.sql.Date;
+
 import java.sql.Timestamp;
 import java.util.Arrays;
+import java.util.Date;
 
 import javax.persistence.Basic;
 import javax.persistence.Entity;
@@ -12,6 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "emptytruckdetevent")
@@ -28,7 +31,8 @@ public class EmptyTruckDetEvent {
 	
    private String emptytruckdeteventtype; // empty or non empty, in users guide its called id
 	
-	private Date receiveddate;
+  // @Temporal(TemporalType.TIMESTAMP)
+	private String receiveddate;
 	
 	private Timestamp timestamp; // in users guide its called "t"
 	
@@ -67,15 +71,6 @@ public class EmptyTruckDetEvent {
 
 
 
-
-	public Date getReceiveddate() {
-		return receiveddate;
-	}
-
-
-	public void setReceiveddate(Date receiveddate) {
-		this.receiveddate = receiveddate;
-	}
 
 
 	public Timestamp getTimestamp() {
@@ -128,6 +123,16 @@ public class EmptyTruckDetEvent {
 	}
 
 
+	public String getReceiveddate() {
+		return receiveddate;
+	}
+
+
+	public void setReceiveddate(String receiveddate) {
+		this.receiveddate = receiveddate;
+	}
+
+
 	@Override
 	public String toString() {
 		return "EmptyTruckDetEvent [id=" + id + ", clientid=" + clientid + ", emptytruckdeteventtype="
@@ -137,8 +142,6 @@ public class EmptyTruckDetEvent {
 	}
 
 
-	
-	
 	
 	
 }

@@ -1,6 +1,7 @@
 package com.zf.cs.db.controller;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.zf.cs.db.model.AutomaticRecalEvent;
 import com.zf.cs.db.model.CargoDetEvent;
 import com.zf.cs.db.model.DoorDetEvent;
 import com.zf.cs.repository.CargoDetecEventRepository;
@@ -43,24 +46,6 @@ public class DoorDetEventController {
 	private ServletContext servletContext;
 	
 
-	@RequestMapping("/showCreateDoorDetEvent")
-	public String showCreate()
-	{
-		return "CreateDoorDetEvent";
-	}
-	
-	@RequestMapping("/saveDoorDetEvent")
-	public String saveCargoDetecEvent(@ModelAttribute("doorDetEvent")DoorDetEvent object,ModelMap modelmap)
-	{
-		
-		DoorDetEvent savedObject = service.saveCargoDetecEvent(object);
-		
-	//	String msg = "succesfully saved with id: " +savedObject.getId();
-		
-	//	modelmap.addAttribute("msg", msg);
-		
-		return "CreateCargoDetecEvent";
-	}
 	
 	@RequestMapping("/displayDoorDetEvent")
 	public String displayCargoDetecEvent(@RequestParam("id")Long id,ModelMap modelmap)
@@ -78,20 +63,20 @@ public class DoorDetEventController {
 	
 
 	@RequestMapping("/displayDoorDetEvent1")
-	public String displayCargoDetecEvent1(@RequestParam("id")Long id,ModelMap modelmap)
+	public String displayCargoDetecEvent1(ModelMap modelmap)
 	{
 		
 		
 	//	List<Objects>	allObjects = repository.findObjects(id);
 		
-		modelmap.addAttribute("clientId", id);
+	//	modelmap.addAttribute("clientId", id);
 		System.out.println("till here");
 	List<DoorDetEvent>	allObjects = service.getAllCargoDetecEvents();
 	modelmap.addAttribute("allDoorDetEvent",allObjects);
 	
 	
 	
-		return "displayDoorDetEvent";
+		return "allDoorDetEventDisplay";
 	}
 	
 	
@@ -142,49 +127,14 @@ public class DoorDetEventController {
 	
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-
-	@RequestMapping("/deleteDoorDetEvent")
-	public String deleteObject(@RequestParam("id")Long id,ModelMap modelmap)
-	{
-		DoorDetEvent object = service.getCargoDetecEventById(id);
-		
-		service.deleteCargoDetecEvent(object);
-		
-		
-		List<DoorDetEvent>	allObjects = service.getAllCargoDetecEvents();
-		modelmap.addAttribute("allDoorDetEvent",allObjects);
-		return "displayDoorDetEvents";
-	}
-	
-	@RequestMapping("/showUpdateDoorDetEvent")
-	public String updateObjet(@RequestParam("id")Long id,ModelMap modekmap)
-	{
-		DoorDetEvent object =	service.getCargoDetecEventById(id);
-	modekmap.addAttribute("object", object);
-		return "updateDoorDetEvent";
-	}
-	
-	@RequestMapping("/updatedDoorDetEvent")
-	public String updatedObject(@ModelAttribute("object")DoorDetEvent object,ModelMap modelmap)
+	@RequestMapping("/displayOneDoorDetEvent")
+	public String updateObjet(@RequestParam("id")String receivedDate,ModelMap modekmap)
 	{
 		
-		service.updateCargoDetecEvent(object);
-		
-		
-		List<DoorDetEvent>	allObjects = service.getAllCargoDetecEvents();
-		modelmap.addAttribute("allDoorDetEvents",allObjects);
-		return "displayDoorDetEvents";
+		DoorDetEvent object =	repository.findByReceivedDate(receivedDate);
+	//	AutomaticRecalEvent object =	service.getCargoDetecEventById(receiveddate);
+	modekmap.addAttribute("object",object);
+		return "displayDoorDetEvent";
 	}
 	
 }

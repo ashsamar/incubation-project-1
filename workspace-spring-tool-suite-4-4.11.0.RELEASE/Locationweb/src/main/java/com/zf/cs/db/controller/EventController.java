@@ -57,9 +57,9 @@ public class EventController {
 	{
 		
 		
-	//	List<Event>	allEvents = repository.findEvents(id);
-		modelmap.addAttribute("clientId", id);
-	List<Event>	allEvents = service.getAllEvents();
+		List<Event>	allEvents = repository.findEvents(id);
+    	modelmap.addAttribute("clientId", id);
+	//List<Event>	allEvents = service.getAllEvents();
 	modelmap.addAttribute("allEvents",allEvents);
 	
 		return "displayEvents";
@@ -68,13 +68,13 @@ public class EventController {
 	
 
 	@RequestMapping("/displayEvents1")
-	public String displayEvent1(@RequestParam("id")Long id,ModelMap modelmap)
+	public String displayEvent1(ModelMap modelmap)
 	{
 		
 		
-		List<Event>	allEvents = repository.findEvents(id);
+	//	List<Event>	allEvents = repository.findEvents(id);
 		
-//	List<Event>	allEvents = service.getAllEvents();
+		List<Event>	allEvents = service.getAllEvents();
 	modelmap.addAttribute("allEvents",allEvents);
 	
 		return "displayEvents";

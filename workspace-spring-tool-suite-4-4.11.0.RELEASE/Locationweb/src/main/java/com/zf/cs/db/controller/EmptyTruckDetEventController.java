@@ -2,6 +2,7 @@ package com.zf.cs.db.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.zf.cs.db.model.CargoDetEvent;
+import com.zf.cs.db.model.DoorDetEvent;
 import com.zf.cs.db.model.EmptyTruckDetEvent;
 import com.zf.cs.repository.EmptyTruckDetEventRepository;
 import com.zf.cs.service.EmptyTruckDetEventService;
@@ -35,25 +38,26 @@ public class EmptyTruckDetEventController {
 	
 	
 	
-	
-	@RequestMapping("/showCreateEmptyTruckDetEvent")
-	public String showCreate()
-	{
-		return "CreateCEmptyTruckDetEvent";
-	}
-	
-	@RequestMapping("/saveEmptyTruckDetEvent")
-	public String saveCargoDetecEvent(@ModelAttribute("emptyTruckDetEvent")EmptyTruckDetEvent object,ModelMap modelmap)
+	@RequestMapping("/displayOneEmptyTruckDetEvent")
+	public String updateObjet(String receivedDate,ModelMap modekmap)
 	{
 		
-		EmptyTruckDetEvent savedObject = service.saveCargoDetecEvent(object);
-		
-	//	String msg = "succesfully saved with id: " +savedObject.getId();
-		
-	//	modelmap.addAttribute("msg", msg);
-		
-		return "CreateEmptyTruckDetEvent";
+		EmptyTruckDetEvent object =	repository.findByReceivedDate(receivedDate);
+	//	AutomaticRecalEvent object =	service.getCargoDetecEventById(receiveddate);
+	modekmap.addAttribute("object",object);
+		return "displayEmptyTruckDetEvent";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	@RequestMapping("/displayEmptyTruckDetEvent")
 	public String displayCargoDetecEvent(@RequestParam("id")Long id,ModelMap modelmap, HttpServletResponse response) throws 
@@ -66,33 +70,6 @@ public class EmptyTruckDetEventController {
 	List<EmptyTruckDetEvent>	allObjects = service.getAllCargoDetecEvents();
 	modelmap.addAttribute("allObjects",allObjects);
 	
-//	byte[] image = service.getCargoDetecEventImageById(id);
-//	response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
-//	
-//	try {
-//		response.getOutputStream().write(image);
-//		response.getOutputStream().flush();
-//		response.getOutputStream().close();
-//	} catch (IOException e1) {
-//		// TODO Auto-generated catch block
-//		e1.printStackTrace();
-//	}
-//	
-//	try {
-//		ServletOutputStream outputStream = response.getOutputStream();
-//		
-//		outputStream.write(image);
-//	//	outputStream.flush();
-//		outputStream.close();
-//		
-//	} catch (IOException e) {
-//		// TODO Auto-generated catch block
-//		e.printStackTrace();
-//	}
-
-//	modelmap.addAttribute("image",image);
-	
-	
 	
 		return "displayEmptyTruckDetEvent";
 	}
@@ -100,19 +77,19 @@ public class EmptyTruckDetEventController {
 	
 
 	@RequestMapping("/displayEmptyTruckDetEvent1")
-	public String displayEmptyTruckDetEvent1(@RequestParam("id")Long id,ModelMap modelmap)
+	public String displayEmptyTruckDetEvent1(ModelMap modelmap)
 	{
 		
 		
 	//	List<Objects>	allObjects = repository.findObjects(id);
-		modelmap.addAttribute("clientId", id);
+	//	modelmap.addAttribute("clientId", id);
 		System.out.println("till here");
 	List<EmptyTruckDetEvent>	allObjects = service.getAllCargoDetecEvents();
 	modelmap.addAttribute("allObjects",allObjects);
 	
 	
 	
-		return "displayEmptyTruckDetEvent";
+		return "allEmptyTruckDetEventDisplay";
 	}
 
 	
@@ -161,40 +138,5 @@ public class EmptyTruckDetEventController {
 	}
 	
 	
-	
-	
-
-	@RequestMapping("/deleteEmptyTruckDetEvent")
-	public String deleteObject(@RequestParam("id")Long id,ModelMap modelmap)
-	{
-		EmptyTruckDetEvent object = service.getCargoDetecEventById(id);
-		
-		service.deleteCargoDetecEvent(object);
-		
-		
-		List<EmptyTruckDetEvent>	allObjects = service.getAllCargoDetecEvents();
-		modelmap.addAttribute("allCargoDetecEvents",allObjects);
-		return "displayEmptyTruckDetEvents";
-	}
-	
-	@RequestMapping("/showUpdateEmptyTruckDetEvent")
-	public String updateObjet(@RequestParam("id")Long id,ModelMap modekmap)
-	{
-		EmptyTruckDetEvent object =	service.getCargoDetecEventById(id);
-	modekmap.addAttribute("object", object);
-		return "updateEmptyTruckDetEvent";
-	}
-	
-	@RequestMapping("/updatedEmptyTruckDetEvent")
-	public String updatedObject(@ModelAttribute("object")EmptyTruckDetEvent object,ModelMap modelmap)
-	{
-		
-		service.updateCargoDetecEvent(object);
-		
-		
-		List<EmptyTruckDetEvent>	allObjects = service.getAllCargoDetecEvents();
-		modelmap.addAttribute("allCargoDetecEvents",allObjects);
-		return "displayEmptyTruckDetEvents";
-	}
 	
 }

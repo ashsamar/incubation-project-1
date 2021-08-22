@@ -1,8 +1,9 @@
 package com.zf.cs.db.model;
 
-import java.sql.Date;
+
 import java.sql.Timestamp;
 import java.util.Arrays;
+import java.util.Date;
 
 import javax.persistence.Basic;
 import javax.persistence.Entity;
@@ -12,6 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "automaticrecalevent")
@@ -27,7 +30,8 @@ public class AutomaticRecalEvent {
 
 	private String automaticrecaleventtype; // removed, added, updated, in users guide its called id
 	
-	private Date receiveddate;
+
+	private String receiveddate;
 	
 	private Timestamp timestamp; // in users guide its called "t"
 	
@@ -66,16 +70,7 @@ public class AutomaticRecalEvent {
 	}
 
 
-	public Date getReceiveddate() {
-		return receiveddate;
-	}
-
-
-	public void setReceiveddate(Date receiveddate) {
-		this.receiveddate = receiveddate;
-	}
-
-
+	
 	public Timestamp getTimestamp() {
 		return timestamp;
 	}
@@ -106,15 +101,29 @@ public class AutomaticRecalEvent {
 	}
 
 
-	
+	public String getReceiveddate() {
+		return receiveddate;
+	}
+
+
+	public void setReceiveddate(String receiveddate) {
+		this.receiveddate = receiveddate;
+	}
+
 
 	@Override
 	public String toString() {
 		return "AutomaticRecalEvent [id=" + id + ", clientid=" + clientid + ", automaticrecaleventtype="
 				+ automaticrecaleventtype + ", receiveddate=" + receiveddate + ", timestamp=" + timestamp
-				+ ", anglediff=" + anglediff + ", status=" + status + ", ]";
+				+ ", anglediff=" + anglediff + ", status=" + status + "]";
 	}
+
+
 	
+
 	
+
+	
+
 	
 }
